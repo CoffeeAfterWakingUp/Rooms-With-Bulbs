@@ -14,7 +14,8 @@ public class UserIpDetails {
     private String timezone;
     private String postalCode;
 
-    public UserIpDetails(){}
+    public UserIpDetails() {
+    }
 
     public UserIpDetails(String ip, String city, String continent, String countryCode, String countryName, BigDecimal latitude, BigDecimal longitude, String org, String timezone, String postalCode) {
         this.ip = ip;

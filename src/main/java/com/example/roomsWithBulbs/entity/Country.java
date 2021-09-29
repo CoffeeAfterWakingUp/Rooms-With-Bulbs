@@ -12,7 +12,8 @@ public class Country {
         this.code = code;
     }
 
-    public Country(){}
+    public Country() {
+    }
 
     public Long getId() {
         return id;

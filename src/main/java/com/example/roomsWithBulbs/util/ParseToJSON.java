@@ -9,11 +9,11 @@ public class ParseToJSON {
     private final static Logger LOGGER = LogManager.getLogger();
 
 
-    public static JSONObject parseStringToJSON(String jsonAsString){
+    public static JSONObject parseStringToJSON(String jsonAsString) {
         JSONObject json = null;
         try {
             json = new JSONObject(jsonAsString);
-        }catch (JSONException err){
+        } catch (JSONException err) {
             LOGGER.error("Error", err.toString());
         }
         return json;

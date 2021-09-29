@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 
-public class RoomService implements Service{
+public class RoomService implements Service {
     private final RoomDAO roomDAO = new RoomDAOImpl();
 
     @Override

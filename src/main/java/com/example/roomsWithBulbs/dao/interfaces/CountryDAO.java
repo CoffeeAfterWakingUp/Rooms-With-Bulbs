@@ -8,6 +8,7 @@ import java.util.List;
 public interface CountryDAO {
 
     List<Country> getAll() throws SQLException;
+
     Country getById(Long id) throws SQLException;
 
 }

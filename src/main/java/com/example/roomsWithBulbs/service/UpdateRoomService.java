@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 
-public class UpdateRoomService implements Service{
+public class UpdateRoomService implements Service {
     private final RoomDAO roomDAO = new RoomDAOImpl();
     private final CountryDAO countryDAO = new CountryDAOImpl();
 
@@ -29,10 +29,10 @@ public class UpdateRoomService implements Service{
         room.setName(name);
         room.setCountry(country);
         room.setBulb(bulb);
-        roomDAO.updateRoom(room,id);
+        roomDAO.updateRoom(room, id);
     }
 
-    private Boolean setBulb(String bulbAsString){
+    private Boolean setBulb(String bulbAsString) {
         return bulbAsString.equals("on");
     }
 }

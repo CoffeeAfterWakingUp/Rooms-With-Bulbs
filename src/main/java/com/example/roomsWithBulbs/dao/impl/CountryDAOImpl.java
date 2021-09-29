@@ -23,14 +23,14 @@ public class CountryDAOImpl implements CountryDAO {
         List<Country> countryList = new ArrayList<>();
         connectionPool = ConnectionPool.getInstance();
         connection = connectionPool.takeConnection();
-        try(PreparedStatement preparedStatement = connection.prepareStatement(GET_ALL)){
+        try (PreparedStatement preparedStatement = connection.prepareStatement(GET_ALL)) {
             ResultSet resultSet = preparedStatement.executeQuery();
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 Country country = new Country();
-                setCountryDetails(country,resultSet);
+                setCountryDetails(country, resultSet);
                 countryList.add(country);
             }
-        }finally {
+        } finally {
             connectionPool.releaseConnection(connection);
         }
         return countryList;
@@ -41,19 +41,19 @@ public class CountryDAOImpl implements CountryDAO {
         Country country = new Country();
         connectionPool = ConnectionPool.getInstance();
         connection = connectionPool.takeConnection();
-        try(PreparedStatement preparedStatement = connection.prepareStatement(GET_BY_ID)){
-            preparedStatement.setLong(1,id);
+        try (PreparedStatement preparedStatement = connection.prepareStatement(GET_BY_ID)) {
+            preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            while(resultSet.next()){
-                setCountryDetails(country,resultSet);
+            while (resultSet.next()) {
+                setCountryDetails(country, resultSet);
             }
-        }finally {
+        } finally {
             connectionPool.releaseConnection(connection);
         }
         return country;
     }
 
-    private void setCountryDetails(Country country,ResultSet resultSet) throws SQLException{
+    private void setCountryDetails(Country country, ResultSet resultSet) throws SQLException {
         country.setId(resultSet.getLong(1));
         country.setName(resultSet.getString(2));
         country.setCode(resultSet.getString(3));

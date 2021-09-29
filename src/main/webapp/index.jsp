@@ -7,7 +7,7 @@
 <body>
 
 
-<c:redirect url = "http://localhost:8080/main" />
+<c:redirect url="http://localhost:8080/main"/>
 
 
 </body>

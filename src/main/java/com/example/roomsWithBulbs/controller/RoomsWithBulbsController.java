@@ -14,24 +14,24 @@ import java.sql.SQLException;
 import java.text.ParseException;
 
 public class RoomsWithBulbsController extends HttpServlet {
-    private static final long serialVersionUID =1L;
+    private static final long serialVersionUID = 1L;
 
     private final static Logger LOGGER = LogManager.getLogger();
 
-    public RoomsWithBulbsController(){
+    public RoomsWithBulbsController() {
         super();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request,response);
+        doGet(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String requestString = request.getRequestURI();
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         Service service = serviceFactory.getService(requestString);
-        try{
-            service.perform(request,response);
+        try {
+            service.perform(request, response);
         } catch (ParseException | SQLException e) {
             LOGGER.error(e);
         }
