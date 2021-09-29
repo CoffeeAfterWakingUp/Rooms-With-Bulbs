@@ -16,7 +16,7 @@ import java.text.ParseException;
 import java.util.List;
 
 
-public class MainService implements Service{
+public class MainService implements Service {
     private final CountryDAO countryDAO = new CountryDAOImpl();
     private static final String ERROR_MESSAGE = "Sorry! Right now, our services are not working(";
 
@@ -28,27 +28,27 @@ public class MainService implements Service{
         getCountryList(request);
         getUserLocalAddress(request);
         //request.setAttribute("details",details);
-        request.getRequestDispatcher("/main.jsp").forward(request,response);
+        request.getRequestDispatcher("/main.jsp").forward(request, response);
     }
 
 
     private void getUserLocalAddress(HttpServletRequest request) throws UnknownHostException {
         String localAddress = IpAddressDetails.getUserLocalAddress();
-        request.setAttribute("localAddress",localAddress);
+        request.setAttribute("localAddress", localAddress);
     }
 
-    private void setMessage(HttpServletRequest request,UserIpDetails userIpDetails){
+    private void setMessage(HttpServletRequest request, UserIpDetails userIpDetails) {
         String ipAddress = userIpDetails.getIp();
         String message = "Welcome, ";
-        if(ipAddress == null){
+        if (ipAddress == null) {
             message = ERROR_MESSAGE;
         }
         message += ipAddress + "!";
-        request.setAttribute("message",message);
+        request.setAttribute("message", message);
     }
 
     private void getCountryList(HttpServletRequest request) throws SQLException {
         List<Country> countryList = countryDAO.getAll();
-        request.setAttribute("countryList",countryList);
+        request.setAttribute("countryList", countryList);
     }
 }

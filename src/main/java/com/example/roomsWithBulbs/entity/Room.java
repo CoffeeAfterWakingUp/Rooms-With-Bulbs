@@ -15,7 +15,8 @@ public class Room {
         this.user = user;
     }
 
-    public Room(){}
+    public Room() {
+    }
 
     public Long getId() {
         return id;

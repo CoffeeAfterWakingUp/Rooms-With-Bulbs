@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 
-public class CreateRoomService implements Service{
+public class CreateRoomService implements Service {
     private final RoomDAO roomDAO = new RoomDAOImpl();
     private final CountryDAO countryDAO = new CountryDAOImpl();
 
@@ -33,7 +33,7 @@ public class CreateRoomService implements Service{
         roomDAO.createRoom(room);
     }
 
-    private Boolean setBulb(String bulbAsString){
+    private Boolean setBulb(String bulbAsString) {
         return bulbAsString.equals("on");
     }
 

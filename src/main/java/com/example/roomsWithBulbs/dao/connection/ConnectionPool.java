@@ -24,49 +24,48 @@ public class ConnectionPool {
     private static volatile ConnectionPool instance;
 
 
-    private ConnectionPool(){
+    private ConnectionPool() {
         setDBParameters();
         initPoolData();
     }
 
-    private void setDBParameters(){
+    private void setDBParameters() {
         DBResourceManager dbResourceManager = DBResourceManager.getInstance();
         this.driverName = dbResourceManager.getValue(DBParameter.DB_DRIVER);
         this.url = dbResourceManager.getValue(DBParameter.DB_URL);
         this.user = dbResourceManager.getValue(DBParameter.DB_USER);
         this.password = dbResourceManager.getValue(DBParameter.DB_PASSWORD);
-        try{
+        try {
             this.poolSize = Integer.parseInt(dbResourceManager.getValue(DBParameter.DB_POOL_SIZE));
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             poolSize = 5;
         }
     }
 
-    private void initPoolData(){
+    private void initPoolData() {
         Connection connection;
-        try{
+        try {
             Class.forName(driverName);
             availableConnections = new ArrayBlockingQueue<>(poolSize);
-            for(int i = 0; i < poolSize; i++){
-                connection = DriverManager.getConnection(url,user,password);
+            for (int i = 0; i < poolSize; i++) {
+                connection = DriverManager.getConnection(url, user, password);
                 availableConnections.put(connection);
             }
 
-        }catch (ClassNotFoundException e ){
-            LOGGER.error("Can't find database driver class",e);
-        }catch (SQLException e){
-            LOGGER.error("SQLException in ConnectionPool",e);
+        } catch (ClassNotFoundException e) {
+            LOGGER.error("Can't find database driver class", e);
+        } catch (SQLException e) {
+            LOGGER.error("SQLException in ConnectionPool", e);
         } catch (InterruptedException e) {
             LOGGER.error(e);
         }
     }
 
-    public synchronized Connection takeConnection(){
+    public synchronized Connection takeConnection() {
         Connection connection = null;
-        if(availableConnections.size() == 0){
+        if (availableConnections.size() == 0) {
             LOGGER.warn("All connections are used");
-        }
-        else {
+        } else {
             try {
                 connection = availableConnections.take();
             } catch (InterruptedException e) {
@@ -76,9 +75,9 @@ public class ConnectionPool {
         return connection;
     }
 
-    public synchronized void releaseConnection(Connection connection){
-        if(connection != null){
-            try{
+    public synchronized void releaseConnection(Connection connection) {
+        if (connection != null) {
+            try {
                 availableConnections.put(connection);
             } catch (InterruptedException e) {
                 LOGGER.error(e);
@@ -87,12 +86,12 @@ public class ConnectionPool {
     }
 
 
-    public static ConnectionPool getInstance(){
+    public static ConnectionPool getInstance() {
         ConnectionPool result = instance;
-        if(result == null){
-            synchronized (ConnectionPool.class){
+        if (result == null) {
+            synchronized (ConnectionPool.class) {
                 result = instance;
-                if(result == null){
+                if (result == null) {
                     instance = result = new ConnectionPool();
                 }
             }

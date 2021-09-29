@@ -29,14 +29,14 @@ public class RoomDAOImpl implements RoomDAO {
         List<Room> roomList = new ArrayList<>();
         connectionPool = ConnectionPool.getInstance();
         connection = connectionPool.takeConnection();
-        try(PreparedStatement preparedStatement = connection.prepareStatement(GET_ALL)){
+        try (PreparedStatement preparedStatement = connection.prepareStatement(GET_ALL)) {
             ResultSet resultSet = preparedStatement.executeQuery();
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 Room room = new Room();
-                setRoomDetails(room,resultSet);
+                setRoomDetails(room, resultSet);
                 roomList.add(room);
             }
-        }finally {
+        } finally {
             connectionPool.releaseConnection(connection);
         }
         return roomList;
@@ -47,13 +47,13 @@ public class RoomDAOImpl implements RoomDAO {
         Room room = new Room();
         connectionPool = ConnectionPool.getInstance();
         connection = connectionPool.takeConnection();
-        try(PreparedStatement preparedStatement = connection.prepareStatement(GET_BY_ID)){
-            preparedStatement.setLong(1,id);
+        try (PreparedStatement preparedStatement = connection.prepareStatement(GET_BY_ID)) {
+            preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            while(resultSet.next()){
-                setRoomDetails(room,resultSet);
+            while (resultSet.next()) {
+                setRoomDetails(room, resultSet);
             }
-        }finally {
+        } finally {
             connectionPool.releaseConnection(connection);
         }
         return room;
@@ -63,13 +63,13 @@ public class RoomDAOImpl implements RoomDAO {
     public void createRoom(Room room) throws SQLException {
         connectionPool = ConnectionPool.getInstance();
         connection = connectionPool.takeConnection();
-        try(PreparedStatement preparedStatement = connection.prepareStatement(CREATE_ROOM)){
-            preparedStatement.setString(1,room.getName());
-            preparedStatement.setBoolean(2,room.getBulb());
-            preparedStatement.setLong(3,room.getCountry().getId());
-            preparedStatement.setString(4,room.getUser());
+        try (PreparedStatement preparedStatement = connection.prepareStatement(CREATE_ROOM)) {
+            preparedStatement.setString(1, room.getName());
+            preparedStatement.setBoolean(2, room.getBulb());
+            preparedStatement.setLong(3, room.getCountry().getId());
+            preparedStatement.setString(4, room.getUser());
             preparedStatement.executeUpdate();
-        }finally {
+        } finally {
             connectionPool.releaseConnection(connection);
         }
     }
@@ -78,18 +78,18 @@ public class RoomDAOImpl implements RoomDAO {
     public void updateRoom(Room room, Long id) throws SQLException {
         connectionPool = ConnectionPool.getInstance();
         connection = connectionPool.takeConnection();
-        try(PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_ROOM)){
-            preparedStatement.setString(1,room.getName());
-            preparedStatement.setBoolean(2,room.getBulb());
-            preparedStatement.setLong(3,room.getCountry().getId());
-            preparedStatement.setLong(4,id);
+        try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_ROOM)) {
+            preparedStatement.setString(1, room.getName());
+            preparedStatement.setBoolean(2, room.getBulb());
+            preparedStatement.setLong(3, room.getCountry().getId());
+            preparedStatement.setLong(4, id);
             preparedStatement.executeUpdate();
-        }finally {
+        } finally {
             connectionPool.releaseConnection(connection);
         }
     }
 
-    private void setRoomDetails(Room room, ResultSet resultSet) throws SQLException{
+    private void setRoomDetails(Room room, ResultSet resultSet) throws SQLException {
         room.setId(resultSet.getLong(1));
         room.setName(resultSet.getString(2));
         room.setBulb(resultSet.getBoolean(3));

@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
 
-public class AllRoomsService implements Service{
+public class AllRoomsService implements Service {
     private final RoomDAO roomDAO = new RoomDAOImpl();
 
 
