@@ -1,0 +1,8 @@
+select option {
+    background-color: #0D0D0D;
+}
+
+input[type="text"]{
+    background-color: transparent;
+    color: white;
+}
