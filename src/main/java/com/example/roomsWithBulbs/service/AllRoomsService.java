@@ -2,7 +2,6 @@ package com.example.roomsWithBulbs.service;
 
 import com.example.roomsWithBulbs.dao.impl.RoomDAOImpl;
 import com.example.roomsWithBulbs.dao.interfaces.RoomDAO;
-import com.example.roomsWithBulbs.entity.Room;
 import org.json.JSONArray;
 
 import javax.servlet.ServletException;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.util.List;
 
 public class AllRoomsService implements Service {
     private final RoomDAO roomDAO = new RoomDAOImpl();
