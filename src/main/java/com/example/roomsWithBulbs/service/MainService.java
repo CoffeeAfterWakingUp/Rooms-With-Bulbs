@@ -24,10 +24,10 @@ public class MainService implements Service {
     @Override
     public void perform(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException, SQLException {
         UserIpDetails details = IpAddressDetails.getUserIpDetails();
-        //setMessage(request,details);
+        setMessage(request,details);
         getCountryList(request);
         getUserLocalAddress(request);
-        //request.setAttribute("details",details);
+        request.setAttribute("details",details);
         request.getRequestDispatcher("/main.jsp").forward(request, response);
     }
 
