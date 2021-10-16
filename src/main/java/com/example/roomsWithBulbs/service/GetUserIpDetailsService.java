@@ -3,7 +3,7 @@ package com.example.roomsWithBulbs.service;
 import com.example.roomsWithBulbs.dao.impl.CountryDAOImpl;
 import com.example.roomsWithBulbs.dao.interfaces.CountryDAO;
 import com.example.roomsWithBulbs.entity.Country;
-import com.example.roomsWithBulbs.entity.UserIpDetails;
+import com.example.roomsWithBulbs.util.UserIpDetails;
 import com.example.roomsWithBulbs.util.IpAddressDetails;
 
 import javax.servlet.ServletException;
@@ -16,7 +16,7 @@ import java.text.ParseException;
 import java.util.List;
 
 
-public class MainService implements Service {
+public class GetUserIpDetailsService implements Service {
     private final CountryDAO countryDAO = new CountryDAOImpl();
     private static final String ERROR_MESSAGE = "Sorry! Right now, our services are not working(";
 
