@@ -15,7 +15,7 @@ public class ServiceFactory {
     }
 
     static {
-        SERVICES.put(MAIN_SERVICE, new MainService());
+        SERVICES.put(MAIN_SERVICE, new GetUserIpDetailsService());
         SERVICES.put(ALL_ROOMS_SERVICE, new AllRoomsService());
         SERVICES.put(CREATE_ROOM_SERVICE, new CreateRoomService());
         SERVICES.put(ROOM_SERVICE, new RoomService());
