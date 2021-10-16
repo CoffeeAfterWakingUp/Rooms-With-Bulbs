@@ -1,7 +1,10 @@
 package com.example.roomsWithBulbs.service;
 
-public class ServiceName {
+final class ServiceName {
 
+    private ServiceName() {
+
+    }
 
     static final String MAIN_SERVICE = "/main";
     static final String CREATE_ROOM_SERVICE = "/create";
