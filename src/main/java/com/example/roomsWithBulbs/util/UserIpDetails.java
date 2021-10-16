@@ -1,4 +1,4 @@
-package com.example.roomsWithBulbs.entity;
+package com.example.roomsWithBulbs.util;
 
 import java.math.BigDecimal;
 

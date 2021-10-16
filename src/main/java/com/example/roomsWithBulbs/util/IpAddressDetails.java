@@ -1,6 +1,5 @@
 package com.example.roomsWithBulbs.util;
 
-import com.example.roomsWithBulbs.entity.UserIpDetails;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
